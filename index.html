@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery List</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <header class="header">
+    <h1>
+      <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M43.75 18.75H40.7917L33.0583 5.21667L29.4417 7.28334L35.9938 18.75H14.0063L20.5604 7.28334L16.9417 5.21667L9.20834 18.75H6.25C5.92979 18.7504 5.61395 18.8245 5.32699 18.9665C5.04002 19.1086 4.78962 19.3149 4.59521 19.5693C4.4008 19.8238 4.2676 20.1196 4.20593 20.4338C4.14426 20.748 4.15577 21.0722 4.23959 21.3813L10.0708 42.7646C10.3132 43.6454 10.8377 44.4225 11.564 44.9768C12.2902 45.531 13.1781 45.8319 14.0917 45.8333H35.9104C37.7812 45.8333 39.4354 44.5729 39.9313 42.7604L45.7625 21.3792C45.8473 21.07 45.8595 20.7454 45.798 20.4308C45.7366 20.1161 45.6033 19.82 45.4084 19.5654C45.2136 19.3108 44.9625 19.1048 44.6748 18.9633C44.3871 18.8219 44.0706 18.7489 43.75 18.75ZM35.9083 41.6667V43.75V41.6667H14.0917L8.97917 22.9167H41.0208L35.9083 41.6667Z"
+          fill="#1C8245" />
+        <path d="M18.75 27.0833H22.9167V37.5H18.75V27.0833ZM27.0833 27.0833H31.25V37.5H27.0833V27.0833Z"
+          fill="#1C8245" />
+      </svg>
+      Grocery List
+    </h1>
+  </header>
+  <main class="container">
+    <form class="add-item">
+      <label for="item">Item</label>
+      <input type="text" name="item" id="item" required placeholder="Milk">
+      <label for="category">Category</label>
+      <select name="category" id="category">
+        <option disabled selected>Select a category...</option>
+        <option value="fruits-vegetables">Fruits & Vegetables</option>
+        <option value="dairy">Dairy</option>
+        <option value="bakery-deli">Bakery & Deli</option>
+        <option value="pantry">Pantry</option>
+        <option value="meat-seafood">Meat & Seafood</option>
+        <option value="frozen-goods">Frozen Goods</option>
+        <option value="household">Household</option>
+        <option value="personal-care">Personal Care</option>
+        <option value="other">Other</option>
+      </select>
+      <button type="submit" class="btn">Add Item</button>
+      <div class="feedback"></div>
+    </form>
+    <nav>
+      <ul class="category-menu" role="tablist">
+        <li>
+          <button data-target="all" class="menu-btn active" type="button" role="tab" aria-controls="all-categories"
+            aria-selected="true" id="all-tab">
+            All
+          </button>
+        </li>
+        <li>
+          <button data-target="#fruits-vegetables" class="menu-btn" type="button" role="tab"
+            aria-controls="fruits-vegetables" aria-selected="false" id="fruits-vegetables-tab">
+            Fruits & Vegetables
+          </button>
+        </li>
+        <li>
+          <button data-target="#dairy" class="menu-btn" type="button" role="tab" aria-controls="dairy"
+            aria-selected="false" id="dairy-tab">
+            Dairy
+          </button>
+        </li>
+        <li>
+          <button data-target="#bakery-deli" class="menu-btn" type="button" role="tab" aria-controls="bakery-deli"
+            aria-selected="false" id="bakery-deli-tab">
+            Bakery & Deli
+          </button>
+        </li>
+        <li>
+          <button data-target="#pantry" class="menu-btn" type="button" role="tab" aria-controls="pantry"
+            aria-selected="false" id="pantry-tab">
+            Pantry
+          </button>
+        </li>
+        <li>
+          <button data-target="#meat-seafood" class="menu-btn" type="button" role="tab" aria-controls="meat-seafood"
+            aria-selected="false" id="meat-seafood-tab">
+            Meat & Seafood
+          </button>
+        </li>
+        <li>
+          <button data-target="#frozen-goods" class="menu-btn" type="button" role="tab" aria-controls="frozen-goods"
+            aria-selected="false" id="frozen-goods-tab">
+            Frozen Goods
+          </button>
+        </li>
+        <li>
+          <button data-target="#household" class="menu-btn" type="button" role="tab" aria-controls="household"
+            aria-selected="false" id="household-tab">
+            Household
+          </button>
+        </li>
+        <li>
+          <button data-target="#personal-care" class="menu-btn" type="button" role="tab" aria-controls="personal-care"
+            aria-selected="false" id="personal-care-tab">
+            Personal Care
+          </button>
+        </li>
+        <li>
+          <button data-target="#other" class="menu-btn" type="button" role="tab" aria-controls="other"
+            aria-selected="false" id="other-tab">
+            Other
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div class="categories-wrapper" id="all-categories" aria-labelledby="all-tab">
+      <section class="category" id="fruits-vegetables" role="tabpanel" aria-labelledby="fruits-vegetables-tab">
+        <header>
+          <h2 class="category__title">🍓 Fruits & Vegetables</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="dairy" role="tabpanel" aria-labelledby="dairy-tab">
+        <header>
+          <h2 class="category__title">🥛 Dairy</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="bakery-deli" role="tabpanel" aria-labelledby="bakery-deli-tab">
+        <header>
+          <h2 class="category__title">🍞 Bakery & Deli</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="pantry" role="tabpanel" aria-labelledby="pantry-tab">
+        <header>
+          <h2 class="category__title">🥫 Pantry</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="meat-seafood" role="tabpanel" aria-labelledby="meat-seafood-tab">
+        <header>
+          <h2 class="category__title">🥩 Meat & Seafood</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="frozen-goods" role="tabpanel" aria-labelledby="frozen-goods-tab">
+        <header>
+          <h2 class="category__title">🍨 Frozen Goods</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="household" role="tabpanel" aria-labelledby="household-tab">
+        <header>
+          <h2 class="category__title">🧺 Household</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="personal-care" role="tabpanel" aria-labelledby="personal-care-tab">
+        <header>
+          <h2 class="category__title">🧼 Personal Care</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+      <section class="category" id="other" role="tabpanel" aria-labelledby="other-tab">
+        <header>
+          <h2 class="category__title">🛒 Other</h2>
+        </header>
+        <ul class="category__items"></ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <p>
+      Made with &#9825; by
+      <a href="https://github.com/julianachagas" target="_blank">Juliana Chagas</a>
+    </p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
